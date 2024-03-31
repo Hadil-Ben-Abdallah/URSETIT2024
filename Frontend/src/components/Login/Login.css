@@ -1,0 +1,52 @@
+:root {
+  --dark-color: #19283f;
+  --green-color: #33d1cc;
+  --red-color: #ff3150;
+  --yellow-color: #ffc400;
+  --section-color: #eff7fa;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+h2 {
+  text-align: center;
+  color: var(--dark-color);
+}
+.wrapper {
+  height: 100vh;
+}
+.login {
+  width: 300px;
+  height: min-content;
+  padding: 20px;
+  border-radius: 5px;
+  color: black;
+  background-color: var(--section-color);
+}
+.password-field {
+  position: relative;
+}
+.eye-icon {
+  color: black;
+  position: absolute; 
+  top: 58%; 
+  right: 35px;
+  cursor: pointer; 
+}
+input[type=checkbox]:checked {
+  background-color: var(--dark-color);
+  border: none;
+}
+.log {
+  background-color: var(--dark-color);
+  border: none;
+  margin-bottom: 18px;
+}
+.log:hover {
+  background-color: #29456d;
+}
+.insc:hover {
+  background-color: #48a0ac;
+}
+
+
