@@ -45,8 +45,27 @@ input[type=checkbox]:checked {
 .log:hover {
   background-color: #29456d;
 }
+.insc {
+  color: var(--dark-color);
+}
 .insc:hover {
-  background-color: #48a0ac;
+  color: var(--dark-color);
+}
+.insc {
+  position: relative;
+}
+.insc::after {
+  position: absolute;
+  content: "";
+  width: 78px;
+  height: 2px;
+  background-color: var(--dark-color);
+  bottom: 6px;
+  left: 35%;
+}
+.btn-check:focus+.btn-success, .btn-success:focus,
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle  {
+  background-color: var(--dark-color);
 }
 
 

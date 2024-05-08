@@ -66,18 +66,18 @@ const Stepper = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [steps] = useState([
-    { step: 1, name: "Inscription", path: "/inscription", expanded: true },
-    { step: 2, name: "Articles Scientifiques", path: "/articles-scientifiques", expanded: false },
-    { step: 3, name: "Ouvrages Scientifiques", path:"/ouvrages-scientifiques", expanded: false },
-    { step: 4, name: "Chapites d'ouvrages", path:"/chapitre-ouvrage", expanded: false },
-    { step: 5, name: "Brevets", path:"/brevets", expanded: false },
-    { step: 6, name: "Obtentions Végétales", path:"/obtentions-vegetales", expanded: false },
-    { step: 7, name: "Habitations", path:"/habitations", expanded: false },
-    { step: 8, name: "Thèses de doctorat", path:"/these-doctorat", expanded: false },
-    { step: 9, name: "Mastères recherche", path:"/masteres-recherche", expanded: false },
-    { step: 10, name: "Manifestations scientifiques", path:"/manifestations-scientifiques", expanded: false },
-    { step: 11, name: "Conventions", path:"/conventions", expanded: false },
-    { step: 12, name: "Projets", path:"/new-project", expanded: false },
+    // { step: 1, name: "Inscription", path: "/inscription", expanded: true },
+    { step: 1, name: "Articles Scientifiques", path: "/articles-scientifiques", expanded: false },
+    { step: 2, name: "Ouvrages Scientifiques", path:"/ouvrages-scientifiques", expanded: false },
+    { step: 3, name: "Chapites d'ouvrages", path:"/chapitre-ouvrage", expanded: false },
+    { step: 4, name: "Brevets", path:"/brevets", expanded: false },
+    { step: 5, name: "Obtentions Végétales", path:"/obtentions-vegetales", expanded: false },
+    { step: 6, name: "Habitations", path:"/habitations", expanded: false },
+    { step: 7, name: "Thèses de doctorat", path:"/these-doctorat", expanded: false },
+    { step: 8, name: "Mastères recherche", path:"/masteres-recherche", expanded: false },
+    { step: 9, name: "Manifestations scientifiques", path:"/manifestations-scientifiques", expanded: false },
+    { step: 10, name: "Conventions", path:"/conventions", expanded: false },
+    { step: 11, name: "Projets", path:"/new-project", expanded: false },
   ]);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 

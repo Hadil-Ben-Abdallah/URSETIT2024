@@ -1,0 +1,9 @@
+.success {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.success h1 {
+  color: #2eb6b1;
+}

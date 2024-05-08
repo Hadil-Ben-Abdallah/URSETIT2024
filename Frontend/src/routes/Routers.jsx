@@ -14,11 +14,14 @@ import Conventions from "../components/Conventions/Conventions";
 import NewProject from "../components/NewProject/NewProject";
 import Home from "../Pages/Home";
 import Login from "../components/Login/Login";
+import Dashboard from "../components/Dashboard/Dashboard";
+import CreateSuccess from "../components/CreateSuccess/CreateSuccess"
+// import EditInscription from "../components/Edit/EditInscription";
 
 const Routers = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login/>} />
+      <Route path="/" element={<Login/>} />
       <Route path="/inscription" element={<Inscription/>} />
       <Route
         path="/articles-scientifiques"
@@ -40,8 +43,11 @@ const Routers = () => {
       />
       <Route path="/conventions" element={<Conventions />} />
       <Route path="/new-project" element={<NewProject />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/create-success" element={<CreateSuccess />} />
+      {/* <Route path="/edit-inscription/:cinInsc" element={<EditInscription />} /> */}
       <Route path="/" element={<Home />}/>
-      <Route path="/home" element={<Home />}/>
+      <Route path="/home" element={<ArticlesScientifiques />}/>
     </Routes>
   );
 };

@@ -9,7 +9,7 @@ export const universities = [
   "UNIVERSITE DE SFAX",
   "UNIVERSITE VIRTUELLE",
   "UNIVERSITE DE GABES",
-  "NIVERSITE DE JENDOUBA",
+  "UNIVERSITE DE JENDOUBA",
   "DIRECTION GENERALE DES ETUDES TECHNOLOGIQUES",
   "DIRECTION DES INSTITUTS SUPERIEURS DE FORMATION DES MAITRES",
   "UNIVERSITE DE MONASTIR",
@@ -24,6 +24,12 @@ export const universities = [
   "UNIVERSITE ETRANGERES",
   "ETABLISSEMENTS NE RELEVANT D'AUCUNES UNIVERSITES",
 ];
+export const getUniversityIndex = (university) => {
+  return universities.indexOf(university);
+};
+export const getUniversityName = (index) => {
+  return universities[index];
+};
 
 export const ministries = [
   "MINISTERE DE L'ENSEIGNEMENT SUPERIEUR ET DE LA RECHERCHE SCIENTIFIQUE",
@@ -93,6 +99,12 @@ export const ministries = [
   "M.COMMERCE & ARTISANAT",
   "Autres",
 ];
+export const getMinistryIndex = (university) => {
+  return universities.indexOf(university);
+};
+export const getMinistryName = (index) => {
+  return ministries[index];
+};
 
 export const establishmentOptions = [
   "UNIVERSITE DE TUNIS",
@@ -427,6 +439,12 @@ export const establishmentOptions = [
   "CENTRE D'ESSAIS & DES TECHNIQUES DE LA CONSTRUCTION",
   "LES ARCHIVES NATIONALES",
 ];
+export const getEstablishmentIndex = (university) => {
+  return establishmentOptions.indexOf(university);
+};
+export const getEstablishmentName = (index) => {
+  return establishmentOptions[index];
+};
 
 export const gradeOptions = [
   "Assistant",
@@ -470,8 +488,21 @@ export const gradeOptions = [
   "Technologue Master",
   "Technicien Statutaire",
 ];
+export const getGradeIndex = (university) => {
+  return gradeOptions.indexOf(university);
+};
+export const getGradeName = (index) => {
+  return gradeOptions[index];
+};
+
 
 export const years = ["2023", "2024"];
+export const getYearIndex = (university) => {
+  return years.indexOf(university);
+};
+export const getYearName = (index) => {
+  return years[index];
+};
 
 export const quartile = [
   "Q1: Top 25% de la distribution des facteurs d'impact",
@@ -480,6 +511,12 @@ export const quartile = [
   "Q4: Moins de 25% de la distribution des facteurs d'impact",
   "Autre",
 ];
+export const getQuartileIndex = (university) => {
+  return quartile.indexOf(university);
+};
+export const getQuartileName = (index) => {
+  return quartile[index];
+};
 
 export const indexation = [
   "WOS",
@@ -488,11 +525,23 @@ export const indexation = [
   "Non indexé", 
   "Autres"
 ];
+export const getIndexationIndex = (university) => {
+  return indexation.indexOf(university);
+};
+export const getIndexationName = (index) => {
+  return indexation[index];
+};
 
 export const type = [
   "Innorpi",
   "PCT", 
 ];
+export const getTypeIndex = (university) => {
+  return type.indexOf(university);
+};
+export const getTypeName = (index) => {
+  return type[index];
+};
 
 export const typeConv = [
   "",
@@ -503,12 +552,24 @@ export const typeConv = [
   "Convention Mobi-Doc",
   "Autre",
 ];
+export const getTypeConvIndex = (university) => {
+  return typeConv.indexOf(university);
+};
+export const getTypeConvName = (index) => {
+  return typeConv[index];
+};
 
 export const category = [
   "Projets nationaux",
   "Projets Bilateraux",
   "Projets Multilatéraux",
 ];
+export const getCategoryIndex = (university) => {
+  return category.indexOf(university);
+};
+export const getCategoryName = (index) => {
+  return category[index];
+};
 
 export const typeProj = [
   "PRF",
@@ -524,5 +585,11 @@ export const typeProj = [
   "PEJC",
   "Autre",
 ];
+export const getTypeProjIndex = (university) => {
+  return typeProj.indexOf(university);
+};
+export const getTypeProjName = (index) => {
+  return typeProj[index];
+};
 
 

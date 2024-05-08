@@ -1,12 +1,12 @@
 import React from 'react'
-import Inscription from '../components/Inscription/Inscription'
+import Login from '../components/Login/Login'
 import Helmet from '../layout/Helmet'
 
 
 const Home = () => {
   return (
     <Helmet title='URSETIT'>
-      <Inscription />
+      <Login />
     </Helmet>
     
   )

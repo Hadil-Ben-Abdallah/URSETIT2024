@@ -20,10 +20,10 @@ import Stepper from '../components/Stepper/Steps'
 // export default Layout
 
 import { useLocation } from 'react-router-dom';
-
 const Layout = () => {
   const location = useLocation();
-  const excludeComponentsPaths = ['/login'];
+  const excludeComponentsPaths = ['/', '/inscription', '/dashboard'];
+  
 
   // Check if the current path is in the excludeComponentsPaths array
   const shouldExcludeComponents = excludeComponentsPaths.includes(location.pathname);

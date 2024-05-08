@@ -15,7 +15,7 @@ function Footer() {
                   <li>
                     <Link
                       className="d-block text-light"
-                      to="https://www.facebook.com/people/UR-Setit/100064651552198/?locale=fr_FR"
+                      to="https://www.facebook.com/profile.php?id=100064651552198"
                       target="_blank"
                     >
                       <i className="fa-brands fa-facebook fa-lg facebook rounded-circle p-2" />

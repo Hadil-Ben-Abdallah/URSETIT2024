@@ -1,0 +1,90 @@
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import './ProjectsTable.css'
+import { Link } from "react-router-dom";
+
+function ProjectsTable() {
+
+  const [data, setData] = useState([]);
+    useEffect(() => {
+      axios.get('http://localhost:8081/new_projects')
+        .then((res) => {
+          console.log('Response:', res.data); // Log the response to check its structure
+          if (Array.isArray(res.data.Data)) {
+            setData(res.data.Data);
+          } else {
+            console.log('Response data is not an array:', res.data);
+          }
+        })
+        .catch((err) => {
+          console.log('Error fetching data:', err);
+        });
+    }, []);
+    const [deleted, setDeleted] = useState(true)
+    useEffect(()=>{
+        if(deleted){
+            setDeleted(false)
+        axios.get('/students')
+        .then((res)=>{
+            setData(res.data)
+        })
+        .catch((err)=>console.log(err))
+    }
+    }, [deleted])
+
+    function handleDelete(id) {
+      axios.delete(`/delete/${id}`)
+        .then((res) => {
+          // Remove the deleted row from the UI
+          setData(prevData => prevData.filter(row => row.id !== id));
+          console.log("Successfully deleted!");
+    
+          // Optionally, you can also update the state to trigger a re-fetch of the data
+          setDeleted(true);
+        })
+        .catch((err) => console.log(err));
+    }
+
+  return (
+    <>
+<div className="card-body d-flex justify-content-center align-items-center">
+<div className="table-responsive">
+<table className="table proj">
+        <thead>
+        <tr>
+                    <th className="text-center">Année</th>
+                    <th className="text-center">Code</th>
+                    <th className="text-center">Catégorie</th>
+                    <th className="text-center">Type</th>
+                    <th className="text-center">Intitulé</th>
+                    <th className="text-center">Coordinateur du projet</th>
+                    <th className="text-center">Part du budget</th>
+                    <th className="text-center">Actions</th>
+                </tr>
+        </thead>
+        <tbody>
+        {data.map((project) => (
+            <tr key={project.id}>
+              <td>{project.annéeProj}</td>
+              <td>{project.codeProj}</td>
+              <td>{project.catégorieProj}</td>
+              <td>{project.typeProj}</td>
+              <td>{project.intituléProj}</td>
+              <td>{project.coordinateurProj}</td>
+              <td>{project.budgetProj}</td>
+              <td>
+                <Link className='btn mx-2 btn-success edit' to={`/edit/${project.id}`}>Editer</Link>
+                <button onClick={() => handleDelete(project.id)} className='btn mx-2 btn-danger delete'>Supprimer</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+  </div>
+      
+    </div>
+    </>
+  );
+}
+
+export default ProjectsTable;

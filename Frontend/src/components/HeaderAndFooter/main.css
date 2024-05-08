@@ -19,7 +19,7 @@ body {
 }
 .main-btn:hover,
 .main-btn1:hover {
-  color: var(--red-color);
+  color: rgb(146, 67, 161);
 }
 .main-title::after {
   content: "";
@@ -71,6 +71,9 @@ h1 {
 .commencer {
   background-color: var(--green-color);
 }
+.commencer:hover {
+  color: rgb(146, 67, 161);
+}
 .footer {
   background-color: var(--dark-color);
 }
@@ -78,7 +81,7 @@ h1 {
   font-weight: 500;
 }
 .footer .copyright div span {
-  color: var(--red-color);
+  color: rgb(146, 67, 161);
 }
 .footer .facebook {
   background-color: #1877f2;

@@ -33,7 +33,7 @@ function Header() {
         className={`navbar navbar-expand-lg ${isSticky ? "sticky-top" : ""}`}
       >
         <div className="container">
-          <Link className="navbar-brand" to="/" onClick={handleScrollToTop}>
+          <Link className="navbar-brand" to="/home" onClick={handleScrollToTop}>
             <img src="imgs/logo.png" alt="No-img" />
           </Link>
           <button
@@ -53,7 +53,7 @@ function Header() {
                 <Link
                   className="nav-link p-2 p-lg-3 active"
                   aria-current="page"
-                  to="/"
+                  to="/home"
                 >
                   Accueil
                 </Link>
@@ -64,15 +64,15 @@ function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link p-2 p-lg-3" to="/apropos">
-                  A propos
+                <Link className="nav-link p-2 p-lg-3" to="/dashboard">
+                  Dashboard
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link p-2 p-lg-3" to="/deconnexion">
+              <li className="nav-item">
+                <Link className="nav-link p-2 p-lg-3" to="/">
                   Déconnexion
                 </Link>
-              </li> */}
+              </li>
             </ul>
             <Link className="btn main-btn" href="#">
               Lien utile
@@ -83,13 +83,13 @@ function Header() {
           </div>
         </div>
       </header>
-      {location.pathname === "/" && (
+      {location.pathname === "/home" && (
         <div className="landing d-flex justify-content-center align-items-center">
           <div className="text-center text-light">
             <h1>Sciences of Electronics, Technologies of Information and Telecommunications</h1>
             <Link
               className="btn rounded-pill main-btn commencer"
-              to="/"
+              to="/home"
               onClick={handleButtonClick}
             >
               Commencer

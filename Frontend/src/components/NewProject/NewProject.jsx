@@ -3,11 +3,13 @@ import "./NewProject.css";
 import { years, category, typeProj } from "../../assets/data/fakeData";
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function NewProject() {
 
-
-  const [values, setValues] = useState({
+  const navigate = useNavigate();
+  const [values, setValues] = React.useState({
     annéeProj: '',
     codeProj: '',
     catégorieProj: '',
@@ -17,22 +19,36 @@ function NewProject() {
     budgetProj: ''
   });
   
-
-const handleChange = (event) => {
-  setValues({...values, [event.target.name]:[event.target.value]})
+  const [errors, setErrors] = useState({});
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setValues(prevValues => ({
+      ...prevValues,
+      [name]: value
+    }));
+    setErrors({ ...errors, [name]: "" });
 }
-
 const handleSubmit = (event) => {
   event.preventDefault();
-  console.log(values)
+  const newErrors = {};
+  Object.keys(values).forEach((key) => {
+    if (
+      !values[key] && key !== "typeProj"
+    ) { // Exclude "budget" from required fields check
+      newErrors[key] = "Ce champ est requis";
+    }
+  });
+  setErrors(newErrors);
+  if (Object.keys(newErrors).length === 0) {
+    console.log(values)
   axios.post('http://localhost:8081/new-project', values)
-  .then(res => console.log("Successfully!"))
+  .then(res => {
+    console.log("Successfully!");
+    navigate("/create-success"); 
+  })
 .catch(err => console.log(err));
 }
-
-
-
-
+  }
   const location = useLocation();
   const shouldScrollToTop = location.state?.scroll;
 
@@ -42,9 +58,6 @@ const handleSubmit = (event) => {
     }
   }, [shouldScrollToTop]);
   
-
-
-
   return (
     <>
       <div className="features text-center pt-5 pb-5">
@@ -75,9 +88,9 @@ const handleSubmit = (event) => {
                     </option>
                   ))}
                 </select>
-                {/* {errors.anneeProj && (
-                  <span className="error-message">{errors.anneeProj}</span>
-                )} */}
+                {errors.annéeProj && (
+                  <span className="error-message">{errors.annéeProj}</span>
+                )}
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputCode" className="form-label">
@@ -90,9 +103,9 @@ const handleSubmit = (event) => {
                   // value={formData.codeProj}
                   onChange={handleChange}
                 />
-                {/* {errors.codeProj && (
+                {errors.codeProj && (
                   <span className="error-message">{errors.codeProj}</span>
-                )} */}
+                )}
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputType" className="form-label">
@@ -109,9 +122,9 @@ const handleSubmit = (event) => {
                     </option>
                   ))}
                 </select>
-                {/* {errors.categorieProj && (
-                  <span className="error-message">{errors.categorieProj}</span>
-                )} */}
+                {errors.catégorieProj && (
+                  <span className="error-message">{errors.catégorieProj}</span>
+                )}
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputType" className="form-label">
@@ -143,9 +156,9 @@ const handleSubmit = (event) => {
                   // value={formData.intituleProj}
                   onChange={handleChange}
                 />
-                {/* {errors.intituleProj && (
-                  <span className="error-message">{errors.intituleProj}</span>
-                )} */}
+                {errors.intituléProj && (
+                  <span className="error-message">{errors.intituléProj}</span>
+                )}
               </div>
               <div className="col-md-6">
                 <label htmlFor="inputCoordinateur" className="form-label">
@@ -158,9 +171,9 @@ const handleSubmit = (event) => {
                   // value={formData.coordinateurProj}
                   onChange={handleChange}
                 />
-                {/* {errors.coordinateurProj && (
+                {errors.coordinateurProj && (
                   <span className="error-message">{errors.coordinateurProj}</span>
-                )} */}
+                )}
               </div>
               <div className="col-md-12">
                 <label htmlFor="inputBudget" className="form-label">
@@ -173,17 +186,20 @@ const handleSubmit = (event) => {
                   // value={formData.budgetProj}
                   onChange={handleChange}
                 />
-                {/* {errors.budgetProj && (
+                {errors.budgetProj && (
                   <span className="error-message">{errors.budgetProj}</span>
-                )} */}
+                )}
               </div>
               <div className="col-12">
                 <button
                   type="submit"
                   className="btn rounded-pill submit"
-                  to="/inscription"
                   state={{ scroll: true }}
                 >
+                  <Link
+                  to="/create-success"
+                  >
+                  </Link>
                   Valider
                 </button>
               </div>
@@ -197,41 +213,3 @@ const handleSubmit = (event) => {
 }
 
 export default NewProject;
-
-
-
-
-
-  // const [formData, setFormData] = useState({
-  //   anneeProj: "",
-  //   codeProj: "",
-  //   categorieProj: "",
-  //   typeProj: "",
-  //   intituleProj: "",
-  //   coordinateurProj: "",
-  //   budgetProj: ""
-  // });
-
-// const [errors, setErrors] = useState({});
-
-// const handleChange = (e) => {
-//   const { id, value } = e.target;
-//   setFormData({ ...formData, [id]: value });
-//   setErrors({ ...errors, [id]: "" }); // Clear error message when input changes
-// };
-
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-//   const newErrors = {};
-//   Object.keys(formData).forEach((key) => {
-//     if (!formData[key] && key !== "typeProj") { // Exclude "budget" from required fields check
-//       newErrors[key] = "Ce champ est requis";
-//     }
-//   });
-//   setErrors(newErrors);
-
-//   // If there are no errors, you can proceed with form submission
-//   if (Object.keys(newErrors).length === 0) {
-//     // Your form submission logic goes here
-//   }
-// };
