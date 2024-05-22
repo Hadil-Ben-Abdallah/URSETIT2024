@@ -3,23 +3,26 @@ import "./Dashboard.css";
 import { Link } from "react-router-dom";
 import ProfileForm from "../ProfileForm/ProfileForm";
 import ProjectsTable from "../NewProject/ProjectsTable";
+import profile from "../../assets/profile.jpg"
+import Message from "../Message/Message";
+import logo from '../../assets/logo.png';
 
 function Dashboard() {
   const [style, setStyle] = useState(
     "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
   );
 
-  const changeStyle = () => {
-    if (
-      style === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-    ) {
-      setStyle(
-        "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled"
-      );
-    } else {
-      setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
-    }
-  };
+  // const changeStyle = () => {
+  //   if (
+  //     style === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+  //   ) {
+  //     setStyle(
+  //       "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled"
+  //     );
+  //   } else {
+  //     setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
+  //   }
+  // };
   const changeStyle1 = () => {
     if (
       style === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -38,7 +41,7 @@ function Dashboard() {
     setIsToggled(!isToggled);
   };
 
-  const [selectedItem, setSelectedItem] = useState("Articles Scientifiques");
+  const [selectedItem, setSelectedItem] = useState("Articles scientifiques");
   // Function to handle item selection
   const handleItemClick = (itemName) => {
     setSelectedItem(itemName);
@@ -59,7 +62,11 @@ function Dashboard() {
     setSelectedComponent(itemName === "Projets" ? "ProjectsTable" : null);
     setSelectedItem(itemName);
   };
-
+  const handleItemClick4 = (itemName) => {
+    setSelectedComponent(itemName === "Envoyer un nouveau message" ? "Message" : null);
+    setSelectedItem(itemName);
+  };
+  
 
   
   const routeMappings = {
@@ -105,7 +112,7 @@ function Dashboard() {
               to="/home"
             >
               <div className="sidebar-brand-icon">
-                <img src="imgs/logo.png" alt="No-img" />
+              <img src={logo} alt="No-img" />
               </div>
               <div className="text-center d-none d-md-inline"></div>
             </Link>
@@ -149,7 +156,16 @@ function Dashboard() {
                   <h6 className="collapse-header">
                     Composantes d'utilisateur:
                   </h6>
+                  {Object.keys(routeMappings).map((itemName) => (
                   <Link
+                    key={itemName}
+                    className="dropdown-item"
+                    onClick={() => handleItemClick3(itemName)}
+                  >
+                    {itemName}
+                  </Link>
+                ))}
+                  {/* <Link
                     className="dropdown-item"
                     onClick={() => handleItemClick("Articles scientifiques")}
                   >
@@ -217,7 +233,7 @@ function Dashboard() {
                     // onClick={() => handleItemClick("Projets")}
                   >
                     Projets
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </li>
@@ -253,7 +269,7 @@ function Dashboard() {
                     Animations
                   </a>
                   <a className="collapse-item" href="utilities-other.html">
-                    Autre
+                    Autres
                   </a>
                 </div>
               </div>
@@ -283,7 +299,7 @@ function Dashboard() {
                   className="btn btn-link d-md-none rounded-circle mr-3 "
                   onClick={changeStyle1}
                 >
-                  <i className="fa fa-bars"></i>
+                  {/* <i className="fa fa-bars"></i> */}
                 </button>
 
                 {/*  <!-- Topbar Search --> */}
@@ -301,7 +317,7 @@ function Dashboard() {
                         className="btn btn-primary main-color"
                         type="button"
                       >
-                        <i className="fas fa-search fa-sm"></i>
+                        <i className="fas fa-search fa-sm "></i>
                       </button>
                     </div>
                   </div>
@@ -332,12 +348,12 @@ function Dashboard() {
                           <input
                             type="text"
                             className="form-control bg-light border-0 small"
-                            placeholder="Search for..."
+                            placeholder="Rechercher..."
                             aria-label="Search"
                             aria-describedby="basic-addon2"
                           />
                           <div className="input-group-append">
-                            <button className="btn btn-primary" type="button">
+                            <button className="btn btn-primary main-color" type="button">
                               <i className="fas fa-search fa-sm"></i>
                             </button>
                           </div>
@@ -368,7 +384,7 @@ function Dashboard() {
                       className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                       aria-labelledby="alertsDropdown"
                     >
-                      <h6 className="dropdown-header">Alerts Center</h6>
+                      <h6 className="dropdown-header" style={{ backgroundColor: '#19283f' }}>Notifications</h6>
                       <a
                         className="dropdown-item d-flex align-items-center"
                         href="#"
@@ -380,10 +396,10 @@ function Dashboard() {
                         </div>
                         <div>
                           <div className="small text-gray-500">
-                            December 12, 2019
+                            9 Mai 2024
                           </div>
                           <span className="font-weight-bold">
-                            A new monthly report is ready to download!
+                            Vous avez un nouveau rapport à télécharger!
                           </span>
                         </div>
                       </a>
@@ -398,9 +414,9 @@ function Dashboard() {
                         </div>
                         <div>
                           <div className="small text-gray-500">
-                            December 7, 2019
+                            9 Mai 2024
                           </div>
-                          $290.29 has been deposited into your account!
+                          1700DT ont été déposés sur votre compte !
                         </div>
                       </a>
                       <a
@@ -414,17 +430,16 @@ function Dashboard() {
                         </div>
                         <div>
                           <div className="small text-gray-500">
-                            December 2, 2019
+                            30 Juin 2024
                           </div>
-                          Spending Alert: We've noticed unusually high spending
-                          for your account.
+                          Vous devez mettre à jour le budget du dernier projet ajouté
                         </div>
                       </a>
                       <a
                         className="dropdown-item text-center small text-gray-500"
                         href="#"
                       >
-                        Show All Alerts
+                        afficher tous les notifications
                       </a>
                     </div>
                   </li>
@@ -443,7 +458,7 @@ function Dashboard() {
                       <i className="fas fa-envelope fa-fw"></i>
                       {/*  <!-- Counter - Messages --> */}
                       <span className="badge badge-danger badge-counter">
-                        7
+                        1
                       </span>
                     </a>
                     {/*   <!-- Dropdown - Messages --> */}
@@ -451,7 +466,7 @@ function Dashboard() {
                       className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                       aria-labelledby="messagesDropdown"
                     >
-                      <h6 className="dropdown-header">Message Center</h6>
+                      <h6 className="dropdown-header"  style={{ backgroundColor: '#19283f' }}>Messages</h6>
                       <a
                         className="dropdown-item d-flex align-items-center"
                         href="#"
@@ -459,94 +474,31 @@ function Dashboard() {
                         <div className="dropdown-list-image mr-3">
                           <img
                             className="rounded-circle"
-                            src="img/undraw_profile_1.svg"
+                            src={logo}
                             alt="..."
                           />
                           <div className="status-indicator bg-success"></div>
                         </div>
                         <div className="font-weight-bold">
-                          <div className="text-truncate">
-                            Hi there! I am wondering if you can help me with a
-                            problem I've been having.
-                          </div>
+                          
                           <div className="small text-gray-500">
-                            Emily Fowler · 58m
+                            Admin · 58m
+                          </div>
+                          <div className="text-truncate">
+                            Bonjour!
                           </div>
                         </div>
                       </a>
-                      <a
-                        className="dropdown-item d-flex align-items-center"
-                        href="#"
-                      >
-                        <div className="dropdown-list-image mr-3">
-                          <img
-                            className="rounded-circle"
-                            src="img/undraw_profile_2.svg"
-                            alt="..."
-                          />
-                          <div className="status-indicator"></div>
-                        </div>
-                        <div>
-                          <div className="text-truncate">
-                            I have the photos that you ordered last month, how
-                            would you like them sent to you?
-                          </div>
-                          <div className="small text-gray-500">
-                            Jae Chun · 1d
-                          </div>
-                        </div>
-                      </a>
-                      <a
-                        className="dropdown-item d-flex align-items-center"
-                        href="#"
-                      >
-                        <div className="dropdown-list-image mr-3">
-                          <img
-                            className="rounded-circle"
-                            src="img/undraw_profile_3.svg"
-                            alt="..."
-                          />
-                          <div className="status-indicator bg-warning"></div>
-                        </div>
-                        <div>
-                          <div className="text-truncate">
-                            Last month's report looks great, I am very happy
-                            with the progress so far, keep up the good work!
-                          </div>
-                          <div className="small text-gray-500">
-                            Morgan Alvarez · 2d
-                          </div>
-                        </div>
-                      </a>
-                      <a
-                        className="dropdown-item d-flex align-items-center"
-                        href="#"
-                      >
-                        <div className="dropdown-list-image mr-3">
-                          <img
-                            className="rounded-circle"
-                            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                            alt="..."
-                          />
-                          <div className="status-indicator bg-success"></div>
-                        </div>
-                        <div>
-                          <div className="text-truncate">
-                            Am I a good boy? The reason I ask is because someone
-                            told me that people say this to all dogs, even if
-                            they aren't good...
-                          </div>
-                          <div className="small text-gray-500">
-                            Chicken the Dog · 2w
-                          </div>
-                        </div>
-                      </a>
-                      <a
+
+                        <Link
                         className="dropdown-item text-center small text-gray-500"
-                        href="#"
-                      >
-                        Read More Messages
-                      </a>
+                        onClick={() => handleItemClick4("Envoyer un nouveau message")}
+                        >
+                          Envoyer un nouveau message
+                        </Link>
+                        
+                        
+
                     </div>
                   </li>
 
@@ -566,7 +518,7 @@ function Dashboard() {
                       <span className="mr-2 d-none d-lg-inline text-gray-600 small">
                         Hadil Ben Abdallah
                       </span>
-                      <img className="img-profile rounded-circle" src="" />
+                      <img className="img-profile rounded-circle" src={profile} />
                     </a>
                     {/*  <!-- Dropdown - User Information --> */}
                     <div
@@ -632,7 +584,7 @@ function Dashboard() {
                         <h6 className="m-0 font-weight-bold ">
                           {selectedItem}
                         </h6>
-                        {selectedItem !== "Profile" && (
+                        {selectedItem !== "Profile" && selectedItem !== "Envoyer un nouveau message" && (
   <Link to={`/${route}`} className="btn mx-2 btn-success">
     + Nouveaux {selectedItem}
   </Link>
@@ -679,6 +631,11 @@ function Dashboard() {
                       {selectedComponent === "ProjectsTable" && (
                         <div className="center-profile-form">
                           <ProjectsTable />
+                        </div>
+                      )}
+                      {selectedComponent === "Message" && (
+                        <div className="center-profile-form">
+                          <Message />
                         </div>
                       )}
 

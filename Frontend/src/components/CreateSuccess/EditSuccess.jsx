@@ -4,7 +4,7 @@ import './Success.css'
 function CreateSuccess() {
   return (
     <div className='success'>
-      <h1>Création avec succée!</h1>
+      <h1>Mis à jour avec succés!</h1>
     </div>
     
   )

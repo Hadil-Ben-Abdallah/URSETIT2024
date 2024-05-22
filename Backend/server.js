@@ -135,6 +135,53 @@ app.get("/new_projects", (req, res) => {
   })
 })
 
+
+
+app.put('/update/:id', (req, res) => {
+  const columns = [];
+  const values = [];
+
+  if (req.body.annéeProj) {
+    columns.push("`annéeProj`=?");
+    values.push(req.body.annéeProj);
+  }
+  if (req.body.codeProj) {
+    columns.push("`codeProj`=?");
+    values.push(req.body.codeProj);
+  }
+  if (req.body.catégorieProj) {
+    columns.push("`catégorieProj`=?");
+    values.push(req.body.catégorieProj);
+  }
+  if (req.body.typeProj) {
+    columns.push("`typeProj`=?");
+    values.push(req.body.typeProj);
+  }
+  if (req.body.intituléProj) {
+    columns.push("`intituléProj`=?");
+    values.push(req.body.intituléProj);
+  }
+  if (req.body.coordinateurProj) {
+    columns.push("`coordinateurProj`=?");
+    values.push(req.body.coordinateurProj);
+  }
+  if (req.body.budgetProj) {
+    columns.push("`budgetProj`=?");
+    values.push(req.body.budgetProj);
+  }
+
+  // Add similar checks for other columns...
+
+  const sql = `UPDATE new_projects SET ${columns.join(', ')} WHERE id=?`;
+  const id = req.params.id;
+  db.query(sql, [...values, id], (err, result) => {
+    if (err) return res.json({ Message: "Error inside server" });
+    return res.json(result);
+  });
+});
+
+
+
 app.get("/get_user/:cinInsc", (req, res) => {
   const cinInsc = req.params.cinInsc;
   const sql = "SELECT * FROM inscriptions WHERE cinInsc = ?";
@@ -156,71 +203,64 @@ app.delete('/delete/:id', (req, res) => {
   });
 });
 
-app.post("/edit_user/:cinInsc", (req, res) => {
-  const cinInsc = req.params.cinInsc;
-  const sql =
-    "UPDATE inscriptions SET `ministereInsc`=?, `universiteInsc`=?, `etablissementInsc`=?, `cinInsc`=?, `numPassInsc`=?,  `cnrpsInsc`=?, `nomInsc`=?, `prenomInsc`=?, `emailInsc`=?, `dateNaissanceInsc`=?, `genreInsc`=?, `photoInsc`=?, `fonctionInsc`=?, `gradeInsc`=?, `specialiteInsc`=?, `diplomeInsc`=?, `dateDiplomeInsc`=?, `indexInsc`=?, `identificationInsc`=?, `telFixeInsc`=?, `telMobileInsc`=?, `faxInsc`=? WHERE cinInsc=14405961";
-    const values = [
-      req.body.ministereInsc,
-      req.body.universiteInsc,
-      req.body.etablissementInsc,
-      req.body.cinInsc,
-      req.body.numPassInsc,
-      req.body.cnrpsInsc,
-      req.body.nomInsc,
-      req.body.prenomInsc,
-      req.body.emailInsc,
-      req.body.dateNaissanceInsc,
-      req.body.genreInsc,
-      req.body.photoInsc,
-      req.body.fonctionInsc,
-      req.body.gradeInsc,
-      req.body.specialiteInsc,
-      req.body.diplomeInsc,
-      req.body.dateDiplomeInsc,
-      req.body.indexInsc,
-      req.body.identificationInsc,
-      req.body.telFixeInsc,
-      req.body.telMobileInsc,
-      req.body.faxInsc,
-    ]
-  db.query(sql, values, (err, result) => {
-    if (err)
-      return res.json({ message: "Something unexpected has occured" + err });
-    return res.json({ success: "Student updated successfully" });
+
+app.put("/update/:cin", (req, res) => {
+  const { cin } = req.params;
+  const updatedData = req.body;
+
+  const sql = "UPDATE inscriptions SET ? WHERE cinInsc = ?";
+    db.query(sql, [updatedData, cin], (err, result) => {
+
+    if (err) {
+      console.error("Error updating data:", err);
+      return res.status(500).json({ message: "Server error" });
+    }
+    console.log("Successfully updated!");
+    return res.json({ message: "Successfully updated!" });
   });
 });
 
 
 
-// app.post('/inscription', upload.single('photoInsc'), (req, res) => {
-//   const photoInsc = req.file.filename;
-//   const {
-//     ministereInsc, universiteInsc, etablissementInsc, cinInsc, numPassInsc,
-//     cnrpsInsc, nomInsc, prenomInsc, emailInsc, dateNaissanceInsc, genreInsc,
-//     fonctionInsc, gradeInsc, specialiteInsc, diplomeInsc, dateDiplomeInsc,
-//     indexInsc, identificationInsc, telFixeInsc, telMobileInsc, faxInsc
-//   } = req.body;
 
-//   const sql = `INSERT INTO inscriptions (
-//     ministereInsc, universiteInsc, etablissementInsc, cinInsc, numPassInsc,
-//     cnrpsInsc, nomInsc, prenomInsc, emailInsc, dateNaissanceInsc, genreInsc,
-//     photoInsc, fonctionInsc, gradeInsc, specialiteInsc, diplomeInsc, dateDiplomeInsc,
-//     indexInsc, identificationInsc, telFixeInsc, telMobileInsc, faxInsc
-//   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-//   const values = [
-//     ministereInsc, universiteInsc, etablissementInsc, cinInsc, numPassInsc,
-//     cnrpsInsc, nomInsc, prenomInsc, emailInsc, dateNaissanceInsc, genreInsc,
-//     photoInsc, fonctionInsc, gradeInsc, specialiteInsc, diplomeInsc, dateDiplomeInsc,
-//     indexInsc, identificationInsc, telFixeInsc, telMobileInsc, faxInsc
-//   ];
 
-//   db.query(sql, values, (err, data) => {
-//     if (err) return res.json(err);
-//     return res.json(data);
+
+// app.post("/edit_user/:cinInsc", (req, res) => {
+//   const cinInsc = req.params.cinInsc;
+//   const sql =
+//     "UPDATE inscriptions SET `ministereInsc`=?, `universiteInsc`=?, `etablissementInsc`=?, `cinInsc`=?, `numPassInsc`=?,  `cnrpsInsc`=?, `nomInsc`=?, `prenomInsc`=?, `emailInsc`=?, `dateNaissanceInsc`=?, `genreInsc`=?, `photoInsc`=?, `fonctionInsc`=?, `gradeInsc`=?, `specialiteInsc`=?, `diplomeInsc`=?, `dateDiplomeInsc`=?, `indexInsc`=?, `identificationInsc`=?, `telFixeInsc`=?, `telMobileInsc`=?, `faxInsc`=? WHERE cinInsc=14405961";
+//     const values = [
+//       req.body.ministereInsc,
+//       req.body.universiteInsc,
+//       req.body.etablissementInsc,
+//       req.body.cinInsc,
+//       req.body.numPassInsc,
+//       req.body.cnrpsInsc,
+//       req.body.nomInsc,
+//       req.body.prenomInsc,
+//       req.body.emailInsc,
+//       req.body.dateNaissanceInsc,
+//       req.body.genreInsc,
+//       req.body.photoInsc,
+//       req.body.fonctionInsc,
+//       req.body.gradeInsc,
+//       req.body.specialiteInsc,
+//       req.body.diplomeInsc,
+//       req.body.dateDiplomeInsc,
+//       req.body.indexInsc,
+//       req.body.identificationInsc,
+//       req.body.telFixeInsc,
+//       req.body.telMobileInsc,
+//       req.body.faxInsc,
+//     ]
+//   db.query(sql, values, (err, result) => {
+//     if (err)
+//       return res.json({ message: "Something unexpected has occured" + err });
+//     return res.json({ success: "Student updated successfully" });
 //   });
 // });
+
 
 
 app.listen(8081, ()=> {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import "./main.css";
 import { Link , useLocation} from "react-router-dom";
+import logo from '../../assets/logo.png';
 
 function Header() {
   const location = useLocation();
@@ -34,7 +35,7 @@ function Header() {
       >
         <div className="container">
           <Link className="navbar-brand" to="/home" onClick={handleScrollToTop}>
-            <img src="imgs/logo.png" alt="No-img" />
+          <img src={logo} alt="No-img" />
           </Link>
           <button
             className="navbar-toggler"
@@ -59,11 +60,6 @@ function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link p-2 p-lg-3" to="/prime">
-                  Prime
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link p-2 p-lg-3" to="/dashboard">
                   Dashboard
                 </Link>
@@ -74,19 +70,14 @@ function Header() {
                 </Link>
               </li>
             </ul>
-            <Link className="btn main-btn" href="#">
-              Lien utile
-            </Link>
-            <Link className="btn main-btn1" href="#">
-              Contactez-nous
-            </Link>
           </div>
         </div>
       </header>
       {location.pathname === "/home" && (
         <div className="landing d-flex justify-content-center align-items-center">
           <div className="text-center text-light">
-            <h1>Sciences of Electronics, Technologies of Information and Telecommunications</h1>
+            <h1>Research Laboratory of Intelligent Systems for Engineering and E-health based on Image and Telecommunication Technologies
+</h1>
             <Link
               className="btn rounded-pill main-btn commencer"
               to="/home"

@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import "./InscriptionHeader.css";
 import { Link , useLocation} from "react-router-dom";
+import logo from '../../assets/logo.png';
 
 function InscriptionHeader() {
   const location = useLocation();
@@ -34,7 +35,7 @@ function InscriptionHeader() {
       >
         <div className="container">
           <Link className="navbar-brand" to="/inscription" onClick={handleScrollToTop}>
-            <img src="imgs/logo.png" alt="No-img" />
+          <img src={logo} alt="No-img" />
           </Link>
           <button
             className="navbar-toggler"
@@ -49,34 +50,18 @@ function InscriptionHeader() {
           </button>
           <div className="collapse navbar-collapse" id="main">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link
-                  className="nav-link p-2 p-lg-3 active"
-                  aria-current="page"
-                  to="/home"
-                >
-                  Accueil
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link p-2 p-lg-3" to="/prime">
-                  Prime
-                </Link>
-              </li>
             </ul>
-            <Link className="btn main-btn" href="#">
-              Lien utile
-            </Link>
-            <Link className="btn main-btn1" href="#">
-              Contactez-nous
-            </Link>
           </div>
+          <Link className="btn main-btn" to="/contact">
+          Contactez-nous
+            </Link>
         </div>
       </header>
       {location.pathname === "/inscription" && (
         <div className="landing d-flex justify-content-center align-items-center">
           <div className="text-center text-light">
-            <h1>Sciences of Electronics, Technologies of Information and Telecommunications</h1>
+            <h1>Research Laboratory of Intelligent Systems for Engineering and E-health based on Image and Telecommunication Technologies
+</h1>
             <Link
               className="btn rounded-pill main-btn commencer"
               to="/inscription"

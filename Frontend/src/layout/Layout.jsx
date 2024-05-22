@@ -22,7 +22,7 @@ import Stepper from '../components/Stepper/Steps'
 import { useLocation } from 'react-router-dom';
 const Layout = () => {
   const location = useLocation();
-  const excludeComponentsPaths = ['/', '/inscription', '/dashboard'];
+  const excludeComponentsPaths = ['/', '/inscription', '/dashboard', '/contact'];
   
 
   // Check if the current path is in the excludeComponentsPaths array

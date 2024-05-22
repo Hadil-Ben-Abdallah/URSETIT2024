@@ -8,12 +8,18 @@
   color: #777777; /* Change 'red' to the color you want */
 }
 
-.edit {
+
+.btn.dash {
   margin-top: 10px;
+  background-color: #19283f;
+  color: white;
+  border: none;
 }
-.edit:hover {
-  opacity: 0.9;
+.btn.dash:hover {
+  background-color: #19283ff1;
 }
+
+
 
 
 
