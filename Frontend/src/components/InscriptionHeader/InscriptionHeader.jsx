@@ -37,7 +37,7 @@ function InscriptionHeader() {
           <Link className="navbar-brand" to="/inscription" onClick={handleScrollToTop}>
           <img src={logo} alt="No-img" />
           </Link>
-          <button
+          {/* <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -47,7 +47,7 @@ function InscriptionHeader() {
             aria-label="Toggle navigation"
           >
             <i className="fa-solid fa-bars" />
-          </button>
+          </button> */}
           <div className="collapse navbar-collapse" id="main">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             </ul>

@@ -19,11 +19,13 @@ import CreateSuccess from "../components/CreateSuccess/CreateSuccess"
 import EditSuccess from "../components/CreateSuccess/EditSuccess"
 import EditProject from "../components/EditProject/EditProject"
 import Contact from "../components/Contact/Contact";
+import SentSuccess from "../components/CreateSuccess/SentSuccess";
 
 const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Login/>} />
+      <Route path="/login" element={<Login/>} />
       <Route path="/inscription" element={<Inscription/>} />
       <Route path="/contact" element={<Contact/>} />
       <Route
@@ -49,8 +51,9 @@ const Routers = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/create-success" element={<CreateSuccess />} />
       <Route path="/edit-success" element={<EditSuccess />} />
+      <Route path="/send-success" element={<SentSuccess />} />
       <Route path="/edit-project/:id" element={<EditProject />} />
-      <Route path="/" element={<Home />}/>
+      {/* <Route path="/" element={<Home />}/> */}
       <Route path="/home" element={<ArticlesScientifiques />}/>
     </Routes>
   );

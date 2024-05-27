@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
 import './Message.css'
+import SentSuccess from '../CreateSuccess/SentSuccess'; 
 
 function Message() {
   const [message, setMessage] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Message sent to Admin:', message);
+    console.log("Form submitted");
+
+    // Simulate form submission (e.g., sending the message to the server)
+    setTimeout(() => {
+      console.log("Message sent:", message);
+      // Set the form as submitted
+      setIsSubmitted(true);
+    }, 500); // Simulating a delay for the server response
   };
 
   return (
-    <div >
+    <div>
+      {!isSubmitted ? (
         <div className="card-body">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -23,6 +32,7 @@ function Message() {
               <textarea
                 className="form-control"
                 id="message"
+                placeholder='Votre message...'
                 rows="4"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -32,6 +42,9 @@ function Message() {
             <button type="submit" className="btn dash btn-primary mt-3">Envoyer</button>
           </form>
         </div>
+      ) : (
+        <SentSuccess />
+      )}
     </div>
   );
 }

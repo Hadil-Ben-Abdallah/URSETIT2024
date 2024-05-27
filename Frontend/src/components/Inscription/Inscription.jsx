@@ -44,10 +44,6 @@ function Inscription() {
   });
   
 
-// const handleChange = (event) => {
-//   setValues({...values, [event.target.name]:[event.target.value]})
-// }
-
 const handleChange = (event) => {
   const { name, value } = event.target;
   setValues(prevValues => ({
@@ -57,21 +53,42 @@ const handleChange = (event) => {
   setErrors({ ...errors, [name]: "" });
 }
 
-// const handlePhoto = (event) => {
-//   setValues(event.target.files[0])
+// const handleSubmit = (event) => {
+//   event.preventDefault();
+//   const newErrors = {};
+//   Object.keys(values).forEach((key) => {
+//     if (
+//       !values[key] && key !== "photoInsc" && 
+//       !values[key] && key !== "numPassInsc" &&
+//       !values[key] && key !== "cnrpsInsc" &&
+//       !values[key] && key !== "fonctionInsc" &&
+//       !values[key] && key !== "identificationInsc" &&
+//       !values[key] && key !== "indexInsc" &&
+//       !values[key] && key !== "specialiteInsc" &&
+//       !values[key] && key !== "diplomeInsc" &&
+//       !values[key] && key !== "telFixeInsc" &&
+//       !values[key] && key !== "telMobileInsc" &&
+//       !values[key] && key !== "faxInsc"
+//     ) { // Exclude "budget" from required fields check
+//       newErrors[key] = "Ce champ est requis";
+//     }
+//   });
+//   setErrors(newErrors);
+//   if (Object.keys(newErrors).length === 0) {
+//     console.log(values)
+//   axios.post('http://localhost:8081/inscription', values)
+//   .then(res => {
+//     console.log("Successfully!");
+//     navigate("/create-success"); 
+//   })
+// .catch(err => console.log(err));
 // }
-
-// const handleUpload = () => {
-//   const formdata = new FormData();
-//   formdata.append('photoInsc', values);
-//   axios.post('http://localhost:8081/inscription', formdata)
-//   .then(res => console.log("Image sent Successfully!"))
-//   .catch(err => console.log(err));
-// }
+//   }
 
 const handleSubmit = (event) => {
   event.preventDefault();
   const newErrors = {};
+
   Object.keys(values).forEach((key) => {
     if (
       !values[key] && key !== "photoInsc" && 
@@ -85,21 +102,35 @@ const handleSubmit = (event) => {
       !values[key] && key !== "telFixeInsc" &&
       !values[key] && key !== "telMobileInsc" &&
       !values[key] && key !== "faxInsc"
-    ) { // Exclude "budget" from required fields check
+    ) {
       newErrors[key] = "Ce champ est requis";
     }
   });
+
   setErrors(newErrors);
+  
   if (Object.keys(newErrors).length === 0) {
-    console.log(values)
-  axios.post('http://localhost:8081/inscription', values)
-  .then(res => {
-    console.log("Successfully!");
-    navigate("/create-success"); 
-  })
-.catch(err => console.log(err));
-}
+    axios.post('http://localhost:8081/inscription', values)
+      .then(res => {
+        console.log("Successfully!");
+        navigate("/create-success"); 
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 409) {
+          setErrors(err.response.data.errors);
+        } else {
+          console.log(err);
+        }
+      });
   }
+};
+
+
+
+
+
+
+
   return (
     <>
     <InscriptionHeader/>

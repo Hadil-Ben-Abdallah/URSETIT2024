@@ -385,6 +385,27 @@ function ProfileForm() {
     });
   };
 
+  // const handleSend = () => {
+  //   axios.put(`http://localhost:8081/update/${editingData.cinInsc}`, editedData)
+  //     .then(() => {
+  //       console.log('Successfully updated!');
+  //       // Update the data displayed in your table or reload the data
+  //       axios.get('http://localhost:8081/inscriptions')
+  //         .then((res) => {
+  //           if (Array.isArray(res.data.Data)) {
+  //             setData(res.data.Data);
+  //           } else {
+  //             console.log('Response data is not an array:', res.data);
+  //           }
+  //         })
+  //         .catch((err) => console.log(err));
+  //       setEditingData({}); // Clear editing data after successful update
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+
+
   const handleSend = () => {
     axios.put(`http://localhost:8081/update/${editingData.cinInsc}`, editedData)
       .then(() => {
@@ -403,6 +424,7 @@ function ProfileForm() {
       })
       .catch((err) => console.log(err));
   };
+  
 
   return (
     <>
